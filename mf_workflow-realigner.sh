@@ -50,7 +50,7 @@ $location/samtools1/samtools sort $f1/alignment1.sam > $f1/alignment1.bam 2> $f2
 #rm -rf ./user_projects/$project_name/1_intermediate_files/alignment1.sam
 
 #Variant calling
-$location/samtools1/samtools mpileup  -t DP,ADF,ADR $realignments -uf $f0/$my_gs $f1/alignment1.bam 2> $f2/mpileup_problem-sample_std.txt | $location/bcftools-1.3.1/bcftools call -mv -Ov > $f1/raw_variants.vcf 2> $f2/call_problem-sample_std.txt
+$location/samtools1/samtools mpileup -B -t DP,ADF,ADR $realignments  -uf $f0/$my_gs $f1/alignment1.bam 2> $f2/mpileup_problem-sample_std.txt | $location/bcftools-1.3.1/bcftools call -mv -Ov > $f1/raw_variants.vcf 2> $f2/call_problem-sample_std.txt
 
 #Groom vcf
 python2 $location/vcf-groomer.py -a $f1/raw_variants.vcf -b $f1/F2_raw.va 
